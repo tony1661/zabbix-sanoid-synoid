@@ -8,7 +8,7 @@ This can also be used to monitor your replicated ZFS datasets via Syncoid.
 The `--monitor-*` commands look at the sanoid.conf file so if you are monitoring a server that has it's ZFS datasets replicated via Syncoid, you will need the sanoid.conf file to be present so that it knows what your replication expextations are.
 
 ### How to use this
- - Copy the sanoid.conf file to 
+ - Copy the `sanoid.conf` file to 
     - `/etc/zabbix/zabbix_agent2.d/plugins.d` (is using Agent 2)
     - `/etc/zabbix/zabbix_agentd.d/` (if using Agent 1)
 
