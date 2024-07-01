@@ -1,0 +1,108 @@
+zabbix_export:
+  version: '6.2'
+  date: '2024-07-01T12:32:24Z'
+  template_groups:
+    -
+      uuid: a571c0d144b14fd4a87a9d9b2aa9fcd6
+      name: Templates/Applications
+  templates:
+    -
+      uuid: dc37e7a5016644a6b47ff8f960eeb635
+      template: 'Template Sanoid'
+      name: 'Template Sanoid'
+      groups:
+        -
+          name: Templates/Applications
+      items:
+        -
+          uuid: 7832760097a84700806965587b9fd535
+          name: 'Sanoid Monitor Capacity'
+          key: sanoid.monitor.capacity
+          delay: 60m
+          history: 30d
+          trends: '0'
+          value_type: CHAR
+          valuemap:
+            name: 'Sanoid monitor output'
+          triggers:
+            -
+              uuid: b08de045ea6b420987a18a1d11d3173d
+              expression: 'last(/Template Sanoid/sanoid.monitor.capacity)="CR"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.capacity)="OK"'
+              name: 'Sanoid Capacity (Critical)'
+              priority: HIGH
+            -
+              uuid: 0591f9b3a3e84b39aaeae5e01fbd7a67
+              expression: 'last(/Template Sanoid/sanoid.monitor.capacity)="WA"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.capacity)="OK"'
+              name: 'Sanoid Capacity (Warning)'
+              priority: WARNING
+        -
+          uuid: 155f82a887464affb2acc54e4eaf8815
+          name: 'Sanoid Monitor Health'
+          key: sanoid.monitor.health
+          delay: 60m
+          history: 30d
+          trends: '0'
+          value_type: CHAR
+          valuemap:
+            name: 'Sanoid monitor output'
+          triggers:
+            -
+              uuid: 69b30af3a24c44159123ba8e81e2545c
+              expression: 'last(/Template Sanoid/sanoid.monitor.health)="CR"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.health)="OK"'
+              name: 'Sanoid Health (Critical)'
+              priority: HIGH
+            -
+              uuid: 4eda2cfa22a344f7aa0a625dd9d1610e
+              expression: 'last(/Template Sanoid/sanoid.monitor.health)="WA"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.health)="OK"'
+              name: 'Sanoid Health (Warning)'
+              priority: WARNING
+        -
+          uuid: 984130dffd3948c8ade49ebf22d0a907
+          name: 'Sanoid Monitor Snapshots'
+          key: sanoid.monitor.snapshots
+          delay: 60m
+          history: 30d
+          trends: '0'
+          value_type: CHAR
+          valuemap:
+            name: 'Sanoid monitor output'
+          triggers:
+            -
+              uuid: e71ae574e696417d95c227fa83570c00
+              expression: 'last(/Template Sanoid/sanoid.monitor.snapshots)="CR"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.snapshots)="OK"'
+              name: 'Sanoid Snapshots (Critical)'
+              priority: HIGH
+            -
+              uuid: dd35683d123540eeada45996ededdbe6
+              expression: 'last(/Template Sanoid/sanoid.monitor.snapshots)="WA"'
+              recovery_mode: RECOVERY_EXPRESSION
+              recovery_expression: 'last(/Template Sanoid/sanoid.monitor.snapshots)="OK"'
+              name: 'Sanoid Snapshots (Warning)'
+              priority: WARNING
+      valuemaps:
+        -
+          uuid: d17ec285a0e646d98b58a83d525c3cc8
+          name: 'Sanoid monitor output'
+          mappings:
+            -
+              value: OK
+              newvalue: OK
+            -
+              value: WA
+              newvalue: WARNING
+            -
+              value: CR
+              newvalue: CRITICAL
+            -
+              value: UN
+              newvalue: UNKNOWN
